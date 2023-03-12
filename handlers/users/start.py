@@ -102,11 +102,9 @@ async def bot1(message : types.Message, state : FSMContext):
     @dp.callback_query_handler(chat_id=1710770340, text='qabul')
     async def bot3(message: types.CallbackQuery):
         await bot.send_message(chat_id=tg_id, text='Buyurtmangiz dasturchi tomonidan qabul qilindi! Qo`shimcha ma`lumotlar bilan shu profilega murojaat qiling👉: @Pythonchi_UZB ')
-        await message.message.answer(text='👍', reply_markup=ReplyKeyboardRemove())
         await bot.send_message(chat_id=tg_id, text='👍')
 
     @dp.callback_query_handler(chat_id=1710770340, text='rad')
     async def bot3(message: types.CallbackQuery):
         await bot.send_message(chat_id=tg_id, text='Buyurtmangiz qabul qilinmadi.Buyurtma juda qiyin yoki noto`g`ri tavsiflangan.  Buyurtmangiz to`g`ri tavsiflanganini tekshiring. ')
-        await message.message.answer(text='☹', reply_markup=ReplyKeyboardRemove())
         await bot.send_message(chat_id=tg_id, text='☹')
