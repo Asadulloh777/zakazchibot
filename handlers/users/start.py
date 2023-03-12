@@ -84,7 +84,7 @@ async def bot1(message : types.Message, state : FSMContext):
     await message.answer(text=xabar, reply_markup=knopka)
     await sorovnoma.tasdiq.set()
 
-    @dp.message_handler(state=sorovnoma.tasdiq, text='Tasdiqlash  (xato va kamchiliklar yo`qligiga ishonch hosil qiling!)')
+    @dp.message_handler(state=sorovnoma.tasdiq, text='Tasdiqlash✅ (xato va kamchiliklar yo`qligiga ishonch hosil qiling!)')
     async def bot2(message : types.Message, state : FSMContext):
         await message.answer(text='Malumotlar dasturchiga yuborildi!', reply_markup=ReplyKeyboardRemove())
         try:
@@ -94,7 +94,7 @@ async def bot1(message : types.Message, state : FSMContext):
         await bot.send_message(chat_id=1710770340, text=xabar, reply_markup=tasdiq)
         await state.finish()
 
-    @dp.message_handler(state=sorovnoma.tasdiq, text='Bekor qilish  (Malumotlar o`chirib yuboriladi!)')
+    @dp.message_handler(state=sorovnoma.tasdiq, text='Bekor qilish❌ (Malumotlar o`chirib yuboriladi!)')
     async def bot2(message : types.Message, state : FSMContext):
         await message.answer(text='Malumotlar o`chirib  yuborildi!', reply_markup=ReplyKeyboardRemove())
         await state.finish()
