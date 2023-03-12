@@ -3,4 +3,7 @@ directory = /home/ubuntu
 command = python3 app.py
 autostart = true
 autorestart = true
-environtment=HOME="/home/ubuntu"
+environtment=HOME="/home/ubuntu",USER="ubuntu
+
+strderr_logfile=/home/ubuntu/logfile_err.log
+stdout_logfile = /home/ubuntu/logfile.log
