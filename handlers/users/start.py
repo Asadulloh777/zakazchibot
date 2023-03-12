@@ -88,7 +88,7 @@ async def bot1(message : types.Message, state : FSMContext):
     async def bot2(message : types.Message, state : FSMContext):
         await message.answer(text='Malumotlar dasturchiga yuborildi!', reply_markup=ReplyKeyboardRemove())
         try:
-            baza.add_zakaz(firstname=ism1, lastname=fam,  telefon=telefon, email=mail, hudud=hudud, buyurtma=buyurtma, muddat=muddat)
+            baza.add_zakaz(fistname=ism1, lastname=fam,  telefon=telefon, email=mail, hudud=hudud, buyurtma=buyurtma, muddat=muddat)
         except Exception:
             pass
         await bot.send_message(chat_id=1710770340, text=xabar, reply_markup=tasdiq)
