@@ -87,12 +87,12 @@ class Database:
     def userlar_soni(self):
         return self.execute("SELECT COUNT(*) FROM user;", fetchone=True)
 
-    def add_zakaz(self,  firstname: str, lastname: str, telefon: int, email: str, hudud: str, buyurtma: str, muddat: str):
+    def add_zakaz(self,  fistname: str, lastname: str, telefon: int, email: str, hudud: str, buyurtma: str, muddat: str):
 
         sql = """
-        INSERT INTO zakaz(firstname, lastname, telefon, email, hudud, buyurtma, muddat) VALUES(?,?,?,?,?,?,?)
+        INSERT INTO zakaz(fistname, lastname, telefon, email, hudud, buyurtma, muddat) VALUES(?,?,?,?,?,?,?)
         """
-        self.execute(sql, parameters=(firstname, lastname, telefon, email, hudud, buyurtma, muddat), commit=True)
+        self.execute(sql, parameters=(fistname, lastname, telefon, email, hudud, buyurtma, muddat), commit=True)
 
 
 
