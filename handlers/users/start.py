@@ -3,9 +3,9 @@ from aiogram.dispatcher import FSMContext
 from aiogram.types import ReplyKeyboardRemove
 from aiogram.dispatcher.filters.builtin import CommandStart
 from states.sorovnoma import sorovnoma
-from keyboards.inline.zakaz import tugma, tasdiq
+from keyboards.inline.zakaz import tugma, tasdiq, tasdiq1
 from loader import dp, baza, bot
-from keyboards.default.tasdiq import knopka
+
 
 @dp.message_handler(CommandStart())
 async def bot_start(message: types.Message):
@@ -81,12 +81,12 @@ async def bot1(message : types.Message, state : FSMContext):
             f"Hudud : {hudud}\n" \
             f"Buyurtma : {buyurtma}\n" \
             f"Muddat : {muddat}"
-    await message.answer(text=xabar, reply_markup=knopka)
+    await message.answer(text=xabar, reply_markup=tasdiq1)
     await sorovnoma.tasdiq.set()
 
-    @dp.message_handler(state=sorovnoma.tasdiq, text='Tasdiqlash✅ (xato va kamchiliklar yo`qligiga ishonch hosil qiling!)')
-    async def bot2(message : types.Message, state : FSMContext):
-        await message.answer(text='Malumotlar dasturchiga yuborildi!', reply_markup=ReplyKeyboardRemove())
+    @dp.callback_query_handler(state=sorovnoma.tasdiq, text='tasdiq')
+    async def bot2(message : types.CallbackQuery, state : FSMContext):
+        await message.message.answer(text='Malumotlar dasturchiga yuborildi!', reply_markup=ReplyKeyboardRemove())
         try:
             baza.add_zakaz(fistname=ism1, lastname=fam,  telefon=telefon, email=mail, hudud=hudud, buyurtma=buyurtma, muddat=muddat)
         except Exception:
@@ -94,9 +94,9 @@ async def bot1(message : types.Message, state : FSMContext):
         await bot.send_message(chat_id=1710770340, text=xabar, reply_markup=tasdiq)
         await state.finish()
 
-    @dp.message_handler(state=sorovnoma.tasdiq, text='Bekor qilish❌ (Malumotlar o`chirib yuboriladi!)')
-    async def bot2(message : types.Message, state : FSMContext):
-        await message.answer(text='Malumotlar o`chirib  yuborildi!', reply_markup=ReplyKeyboardRemove())
+    @dp.callback_query_handler(state=sorovnoma.tasdiq, text='inkor')
+    async def bot2(message : types.CallbackQuery, state : FSMContext):
+        await message.message.answer(text='Malumotlar o`chirib  yuborildi!', reply_markup=ReplyKeyboardRemove())
         await state.finish()
 
     @dp.callback_query_handler(chat_id=1710770340, text='qabul')
