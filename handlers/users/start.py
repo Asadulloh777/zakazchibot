@@ -8,19 +8,20 @@ from loader import dp, baza, bot
 
 
 @dp.message_handler(CommandStart())
-async def bot_start(message: types.Message):
+async def bot_start(message: types.Message, state : FSMContext):
     try:
         ism = message.from_user.first_name
         user = message.from_user.username
         tg_id = message.from_user.id
+        await state.update_data({'id' : tg_id})
         baza.user_qoshish(firstname=ism, username=user, tg_id=tg_id)
     except Exception:
         pass
     await message.answer(f"Assalomu alaykum, {message.from_user.full_name}!", reply_markup=tugma)
-    @dp.callback_query_handler(text='bot')
-    async def bot(message : types.CallbackQuery):
-        await message.message.answer(text='Ismingizni kiriting:', reply_markup=ReplyKeyboardRemove())
-        await sorovnoma.ism.set()
+@dp.callback_query_handler(text='bot')
+async def bot(message : types.CallbackQuery):
+    await message.message.answer(text='Ismingizni kiriting:', reply_markup=ReplyKeyboardRemove())
+    await sorovnoma.ism.set()
 @dp.message_handler(state=sorovnoma.ism)
 async def bot1(message : types.Message, state : FSMContext):
     ism = message.text
@@ -121,7 +122,7 @@ async def bot2(message : types.CallbackQuery, state : FSMContext):
 @dp.callback_query_handler(chat_id=1710770340, text='qabul')
 async def bot3(message: types.CallbackQuery, state : FSMContext):
     info = await state.get_data()
-    tg_id = info.get('tg_id')
+    tg_id = info.get('id')
     await bot.send_message(chat_id=tg_id, text='Buyurtmangiz dasturchi tomonidan qabul qilindi! Qo`shimcha ma`lumotlar bilan shu profilega murojaat qiling👉: @Pythonchi_UZB ')
     await bot.send_message(chat_id=tg_id, text='👍')
     await state.finish()
@@ -129,7 +130,7 @@ async def bot3(message: types.CallbackQuery, state : FSMContext):
 @dp.callback_query_handler(chat_id=1710770340, text='rad')
 async def bot3(message: types.CallbackQuery, state : FSMContext):
     inf = await state.get_data()
-    tg_id = inf.get('tg_id')
+    tg_id = inf.get('id')
     await bot.send_message(chat_id=tg_id, text='Buyurtmangiz qabul qilinmadi.Buyurtma juda qiyin yoki noto`g`ri tavsiflangan.  Buyurtmangiz to`g`ri tavsiflanganini tekshiring. ')
     await bot.send_message(chat_id=tg_id, text='☹')
     await state.finish()
