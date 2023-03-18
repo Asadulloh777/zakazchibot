@@ -111,12 +111,12 @@ async def bot2(message : types.CallbackQuery, state : FSMContext):
     except Exception:
         pass
     await bot.send_message(chat_id=1710770340, text=xabar, reply_markup=tasdiq)
-    await state.finish()
+
 
 @dp.callback_query_handler(state=sorovnoma.tasdiq, text='inkor')
 async def bot2(message : types.CallbackQuery, state : FSMContext):
     await message.message.answer(text='Malumotlar o`chirib  yuborildi!', reply_markup=ReplyKeyboardRemove())
-    await state.finish()
+
 
 @dp.callback_query_handler(chat_id=1710770340, text='qabul')
 async def bot3(message: types.CallbackQuery, state : FSMContext):
@@ -124,6 +124,7 @@ async def bot3(message: types.CallbackQuery, state : FSMContext):
     tg_id = info.get('tg_id')
     await bot.send_message(chat_id=tg_id, text='Buyurtmangiz dasturchi tomonidan qabul qilindi! Qo`shimcha ma`lumotlar bilan shu profilega murojaat qiling👉: @Pythonchi_UZB ')
     await bot.send_message(chat_id=tg_id, text='👍')
+    await state.finish()
 
 @dp.callback_query_handler(chat_id=1710770340, text='rad')
 async def bot3(message: types.CallbackQuery, state : FSMContext):
@@ -131,3 +132,4 @@ async def bot3(message: types.CallbackQuery, state : FSMContext):
     tg_id = inf.get('tg_id')
     await bot.send_message(chat_id=tg_id, text='Buyurtmangiz qabul qilinmadi.Buyurtma juda qiyin yoki noto`g`ri tavsiflangan.  Buyurtmangiz to`g`ri tavsiflanganini tekshiring. ')
     await bot.send_message(chat_id=tg_id, text='☹')
+    await state.finish()
