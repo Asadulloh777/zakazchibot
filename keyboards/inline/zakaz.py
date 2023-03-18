@@ -20,10 +20,10 @@ tasdiq = InlineKeyboardMarkup(
 tasdiq1 = InlineKeyboardMarkup(
     inline_keyboard=[
         [
-            InlineKeyboardButton(text='Tasdiqlash✅ (xato  yo`qligiga ishonch hosil qiling!)', callback_data='tasdiq')
+            InlineKeyboardButton(text='Tasdiqlash✅ ', callback_data='tasdiq')
         ],
         [
-            InlineKeyboardButton(text='Bekor qilish❌ (Malumotlar o`chirib yuboriladi!)', callback_data='inkor')
+            InlineKeyboardButton(text='Bekor qilish❌ ', callback_data='inkor')
         ]
     ]
 )
